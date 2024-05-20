@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block preamble %}
+		<div class="background-video">
+			<div class="video-overlay" style="z-index: 5;">
+				<div class="video-overlay-text-container">
+					<p class="accent-text">Computer Vision</p>
+					<p class="accent-text">Software Engineering</p>
+					<p class="accent-text">Machine Learning</p>
+					<p class="impact-text">Ethan Welborn</p>
+				</div>
+			</div>
+
+			<div class="video-blur"></div>
+
+			<video loop autoplay muted>
+				<source src="{{ url_for('static', filename='ethanwelborncs.mp4')}}" type="video/mp4">
+			</video>
+		</div>
+{% endblock %}
+
+{% block main %}
+			<section class="about">
+				<h1 class="impact-text">Who am I?</h1>
+				<p>My name is Ethan Welborn, I am an instructor at Tarleton State University. My short-term goal is to gain teaching and research experience; my long-term goal is to work as a researcher in the defense industry.</p>
+				<p>My favorite language right now is Rust, and my favorite computer science topic right now is compiler design. I'm a devout follower of Jesus Christ, and my non-CS hobbies include playing guitar, writing, and playing chess.</p>
+			</section>
+
+			<section class="somethingelse">
+				<h1 class="impact-text">Timeline</h1>
+				<ul class="experience-list">
+					<li class="year">
+						<p>2014</p>
+					</li>
+					<li>
+						<p>Started learning how to write code</p>
+					</li>
+
+					<li class="year">
+						<p>2016</p>
+					</li>
+					<li>
+						<p>Started taking classes at Tarrant County Community college</p>
+					</li>
+
+					<li class="year">
+						<p>2019</p>
+					</li>
+					<li>
+						<p>Transferred to Tarleton State University</p>
+					</li>
+
+					<li class="year">
+						<p>2020</p>
+					</li>
+					<li>
+						<p>Hired as Student Worker</p>
+					</li>
+
+					<li class="year">
+						<p>2021</p>
+					</li>
+					<li>
+						<p>Graduated with B.S. in Computer Science</p>
+					</li>
+					<li>
+						<p>Hired as Graduate Lab Assistant</p>
+					</li>
+
+					<li class="year">
+						<p>2022</p>
+					</li>
+					<li>
+						<p>Hired as Lecturer</p>
+					</li>
+
+					<li class="year">
+						<p>2023</p>
+					</li>
+					<li>
+						<p>Graduated with M.S. in Computer Engineering</p>
+					</li>
+					<li>
+						<p>Hired as Instructor</p>
+					</li>
+					<li>
+						<p>First conference paper submitted and accepted</p>
+					</li>
+
+				</ul>
+			</section>
+{% endblock %}

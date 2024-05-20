@@ -1,0 +1,64 @@
+services:
+  nginx-proxy:
+    build: containers/nginx
+    restart: always
+    volumes:
+      # Uncomment the line below for the SSL config, or...
+      #- ./containers/nginx/ssl.conf:/tmp/default.conf
+      # Uncomment the line below for the non-SSL config
+      - ./containers/nginx/default.conf:/tmp/default.conf
+
+      - /etc/letsencrypt:/etc/letsencrypt/:ro
+      - /var/certbot/webroot:/var/certbot/webroot
+      #- /var/log/letsencrypt:./var/log/letsencrypt
+    environment:
+      - FLASK_SERVER_ADDR=flask-app:8000
+      - DOMAIN_NAME
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - web-access
+      - no-web-access
+    depends_on:
+      - flask-app
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail localhost:80/health-check || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    command: /app/start.sh
+  flask-app:
+    build: containers/flask
+    restart: always
+    ports: 
+      - 8000:8000
+    networks:
+      - no-web-access
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail localhost:8000/flask-health-check || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    command: gunicorn -w 3 -t 60 -b 0.0.0.0:8000 app:app
+  certbot:
+    build: containers/certbot
+    restart: always
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt/:rw
+      - /var/certbot/webroot:/var/certbot/webroot
+    environment:
+      - DOMAIN_NAME
+    networks:
+      - web-access
+    depends_on:
+      - nginx-proxy
+    command: renew.sh
+    # Comment out the line below if you're running with SSL to turn on the Certbot renewal process
+    profiles: ["donotstart"]
+networks:
+  web-access:
+    driver: bridge
+  no-web-access:
+    driver: bridge
+    internal: true

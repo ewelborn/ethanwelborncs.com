@@ -1,0 +1,572 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+/* https://coolors.co/visualizer/245ba3-e34830-2c2469-000000-f5f5f5 */
+
+/***************************/
+/* accessibility standards */
+/***************************/
+
+/*
+    The minimum width supported is 320px, with breakpoints set at..
+        576px (small devices, larger phones)
+        768px (medium devices)
+        992px (large devices, tablets)
+        1200px (extra large devices, desktops)
+*/
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+:root {
+    --primary-column-max-width: 1200px;
+
+    --primary-bg-color: #fff;
+    --primary-text-color: #000;
+    --secondary-bg-color: #22569B;
+    --secondary-text-color: #fff;
+    --dark-accent-bg-color: #000;
+    --dark-accent-text-color: #fff;
+    --light-accent-bg-color: #fff;
+    --light-accent-text-color: #000;
+    --dark-accent2-bg-color: #2C2469;
+    --dark-accent2-text-color: #fff;
+    --light-accent2-bg-color: #E34830;
+    --light-accent2-text-color: #000;
+
+    --link-text-color: #00E;
+    --visited-link-text-color: #551A8B;
+}
+
+/******************/
+/* custom classes */
+/******************/
+
+.impact-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.accent-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
+
+.background-video {
+    --max-video-width: var(--primary-column-max-width);
+
+    display: grid;
+    background-color: var(--light-accent-bg-color);
+
+    .video-overlay {
+        display: none;
+    }
+
+    .video-blur {
+        display: none;
+    }
+
+    video {
+        grid-column: 1; 
+        grid-row: 1; 
+        width: 100%;
+
+        margin: 0 auto;
+        max-width: var(--max-video-width);
+    }
+}
+
+.sticky-footer {
+    /* 
+        If there is any space left on the page, the sticky footer will eat it so that 
+        the footer stays at the bottom of the page. 
+    */
+    flex-grow: 1;
+}
+
+/* External links (https://stackoverflow.com/questions/5379752/css-style-external-links)*/
+a[href]:not(:where(
+  /* exclude hash only links */
+  [href^="#"],
+  /* exclude relative but not double slash only links */
+  [href^="/"]:not([href^="//"]),
+  /* exclude local links that start with a dot */
+  [href^="."],
+  /* domains to exclude */
+  [href*="//ethanwelborncs.com"],
+)) {
+    margin-right: 16px;
+}
+
+/* External links (https://stackoverflow.com/questions/5379752/css-style-external-links)*/
+a[href]:not(:where(
+  /* exclude hash only links */
+  [href^="#"],
+  /* exclude relative but not double slash only links */
+  [href^="/"]:not([href^="//"]),
+  /* exclude local links that start with a dot */
+  [href^="."],
+  /* domains to exclude */
+  [href*="//ethanwelborncs.com"],
+)):after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    margin-left: 4px;
+
+    background-color: currentColor;
+    mask-image: url("external-link.svg");
+    mask-size: contain;
+}
+
+/* Email */
+a[href]:where(
+  [href^="mailto:"],
+):after {
+    mask-image: url("email.svg");
+}
+
+.image-to-text-showcase {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    padding-left: 0px;
+
+    li {
+        list-style-type: none;
+        padding: 5px;
+    }
+
+    li > img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+    }
+
+    li > p {
+        display: none;
+        font-size: 8px;
+    }
+}
+
+.prefix-tiny-logo-python::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-left: 4px;
+    background-image: url("logos/python.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.prefix-tiny-logo-docker::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-left: 4px;
+    background-image: url("logos/docker.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Small */
+@media screen and (min-width: 576px)  {
+    .background-video {
+        .video-overlay {
+            display: inherit;
+            grid-column: 1;
+            grid-row: 2;
+            background-color: var(--dark-accent2-bg-color);
+            padding-left: 20px;
+            padding-right: 20px;
+    
+            .video-overlay-text-container {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+    
+        .impact-text, .accent-text {
+            color: var(--dark-accent2-text-color);
+            font-size: 12px;
+        }
+    }
+
+    .image-to-text-showcase {
+        li > img {
+            width: 60px;
+            height: 60px;
+        }
+    }
+}
+
+/* Medium */
+@media screen and (min-width: 768px)  {
+    
+}
+
+/* Large */
+@media screen and (min-width: 992px)  {
+    .background-video {
+        background-color: var(--dark-accent-bg-color);
+
+        .video-blur {
+            display: inherit;
+            grid-column: 1; 
+            grid-row: 1; 
+            z-index: 3; 
+            background-color: #000; 
+            opacity: 50%; 
+            width: 100%;
+        }
+
+        .video-overlay {
+            padding-left: 60px;
+            padding-right: 60px;
+            bottom: 500px;
+            z-index: 5;
+            grid-row: 1;
+            background-color: transparent;
+
+            width: 100%;
+            margin: 0 auto;
+            max-width: var(--max-video-width);
+
+            .video-overlay-text-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: end;
+                height: 96%;
+            }
+
+            .accent-text {
+                font-family: 'Arial', sans-serif;
+                margin-top: 5px;
+            }
+
+            .video-overlay-text-container > p {
+                width: 96%;
+                text-align: left;
+            }
+        }
+
+        .impact-text {
+            font-size: 50pt;
+            margin: 0px;
+        }
+
+        .accent-text {
+            font-size: 24pt;
+            margin: 0px;
+        }
+    }
+    
+}
+
+/* Extra Large */
+@media screen and (min-width: 1200px)  {
+
+}
+
+/***************************/
+/* default class overrides */
+/***************************/
+
+body {
+    margin: 0px;
+	padding: 0px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: auto;
+
+    .impact-text {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    /*section:nth-child(odd) {
+        background-color: var(--primary-bg-color);
+        color: var(--primary-text-color);
+        .impact-text, .accent-text {
+            color: var(--primary-text-color);
+        }
+    }
+    
+    section:nth-child(even) {
+        background-color: var(--secondary-bg-color);
+        color: var(--secondary-text-color);
+        .impact-text, .accent-text {
+            color: var(--secondary-text-color);
+        }
+    }*/
+
+    .experience-list {
+        /* Need this for the dotted line*/
+        position: relative;
+
+        padding-left: 5px;
+
+        li {
+            /* For dotted line circle */
+            position: relative;
+
+            list-style: none;
+            margin-left: 10px;
+            height: 50px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        li::before {
+            content: " ";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            top: calc(50% - 3px);
+            border: 2px solid black;
+            border-radius: 50%;
+
+            /* 
+                Just lined this up until it looked right
+            */
+            left: -17.6px;
+
+            background: white;
+        }
+
+        li.year {
+            height: 25px;
+
+            p {
+                position: absolute;
+                left: -26px;
+                background: white;
+            }
+        }
+
+        li.year::before {
+            border: none;
+            background: none;
+        }
+
+        li:nth-child(odd) {
+            /*margin-right: 10px;*/
+            /*background-color: var(--light-accent-bg-color);
+            color: var(--light-accent-text-color);
+            .impact-text, .accent-text {
+                color: var(--light-accent-text-color);
+            }*/
+        }
+
+        li:nth-child(even) {
+            /*margin-left: 10px;*/
+            /*background-color: var(--light-accent2-bg-color);
+            color: var(--light-accent2-text-color);
+            .impact-text, .accent-text {
+                color: var(--light-accent2-text-color);
+            }*/
+        }
+    }
+
+    .experience-list::before {
+        content: " ";
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: -3.8px;
+        width: 10px;
+        /*border-left: dotted;*/
+        background-image: url("dot-single-svgrepo-com.svg");
+        background-repeat: repeat-y;
+        background-size: 12.5px;
+        background-position: center;
+    }
+}
+
+section {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+nav {
+    background-color: var(--light-accent-bg-color);
+    color: var(--light-accent-text-color);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-left: 5%;
+	padding-right: 5%;
+    padding-top: 15px;
+    padding-bottom: 15px; 
+    z-index: 20;
+
+    box-shadow: gray 0px 1px 5px;
+
+    .hamburger-button {
+        display: none;
+    }
+
+    .hamburger-button + label {
+        width: 16px;
+        height: 16px;
+        background-image: url("list.svg");
+        cursor: pointer;
+    }
+
+    .hamburger-button:checked ~ .navigation-links {
+        display: flex;
+        flex-direction: column;
+        
+        width: 150px;
+        right: 0px;
+        top: 54px;
+
+        background-color: var(--light-accent-bg-color);
+
+        a {
+            margin-top: 4px;
+            margin-bottom: 4px;
+            margin-left: 4px;
+        }
+    }
+
+    a, span {
+        color: var(--light-accent-text-color);
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+
+    .accent-text {
+        display: none;
+    }
+
+    .impact-text {
+        font-size: 16px;
+    }
+
+    .navigation-links {
+        display: none;
+        position: absolute;
+        z-index: 10;
+    }
+} 
+
+footer {
+    background-color: var(--dark-accent-bg-color);
+    color: var(--dark-accent-text-color);
+    padding: 10px;
+}
+
+/* Small */
+@media screen and (min-width: 576px)  {
+    nav .accent-text {
+        display: inline;
+    }
+}
+
+/* Medium */
+@media screen and (min-width: 768px)  {
+    
+}
+
+/* Large */
+@media screen and (min-width: 992px)  {
+    main {
+        /*min-width: var(--primary-column-max-width);*/
+        max-width: var(--primary-column-max-width);
+
+        .impact-text {
+            font-size: 28px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    }
+
+    nav {
+        background-color: var(--dark-accent-bg-color);
+        color: var(--dark-accent-text-color);
+
+        box-shadow: white 0px 0px;
+
+        a, span, .accent-text {
+            color: var(--dark-accent-text-color);
+            font-family: 'Arial', sans-serif;
+            font-weight: 300;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        a:hover {
+            color: #E34830;
+        }
+
+        .navigation-links {
+            display: inherit;
+            position: inherit;
+        }
+
+        .hamburger-button {
+            display: none;
+        }
+
+        .hamburger-button + label {
+            display: none;
+        }
+    }
+
+    footer {
+        section {
+            max-width: var(--primary-column-max-width);
+            margin: auto;
+        }
+    }
+}
+
+/* Extra Large */
+@media screen and (min-width: 1200px)  {
+    
+}

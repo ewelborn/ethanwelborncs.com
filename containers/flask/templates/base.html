@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css')}}">
+		<link rel="preconnect" href="https://fonts.gstatic.com/">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{% block web_title %}{% endblock %}</title>
+		<link rel="icon" type="image/png" href="https://www.ethanwelborncs.com/EthanWelbornCS/Favicon.png">
+		<meta name="description" content="Template page">
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="{{ self.web_title() }}">
+
+		<script>
+			// Force the hamburger menu to close if the window becomes large enough
+			function checkMedia(media) {
+				//console.log(media);
+				if (media.matches) {
+					document.getElementById("hamburger").checked = false;
+				}
+			}
+
+			var m = window.matchMedia('(min-width: 992px)');
+			checkMedia(m); // Call listener function at run time
+			m.addListener(checkMedia); // Attach listener function on state changes
+		</script>
+	</head>
+	<body>
+
+		<nav>
+			<div>
+				<a href="/" class="impact-text">Ethan Welborn</a>
+				<span class="accent-text">M.S. in Computer Engineering</span>
+			</div>
+			
+			<input name="hamburger" id="hamburger" class="hamburger-button" autocomplete="off" type="checkbox">
+			<label for="hamburger"></label>
+
+			<div class="navigation-links">
+				<a href="/">Home</a>
+				<a href="/portfolio">Portfolio</a>
+				<a href="/contact">Contact</a>
+			</div>
+		</nav>
+		
+		{% block preamble %}
+		{% endblock %}
+		
+
+		<main>
+			{% block main %}
+			{% endblock %}
+		</main>
+
+		<div class="sticky-footer"></div>
+
+		<footer>
+			<section>
+				<p>www.ethanwelborncs.com</p>
+				<p>ethanwelborn@protonmail.com</p>
+			</section>
+		</footer>
+</body></html>
