@@ -15,8 +15,9 @@
 
 			<div class="video-blur"></div>
 
-			<video loop autoplay muted>
+			<video playsinline loop autoplay muted poster="{{ url_for('static', filename='ethanwelborncs_thumbnail.jpg')}}">
 				<source src="{{ url_for('static', filename='ethanwelborncs.mp4')}}" type="video/mp4">
+				<source src="{{ url_for('static', filename='ethanwelborncs.mov')}}" type="video/mov">
 			</video>
 		</div>
 {% endblock %}
