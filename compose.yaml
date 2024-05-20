@@ -53,7 +53,7 @@ services:
       - web-access
     depends_on:
       - nginx-proxy
-    command: renew.sh
+    command: bash renew.sh
     # Comment out the line below if you're running with SSL to turn on the Certbot renewal process
     profiles: ["donotstart"]
 networks:
