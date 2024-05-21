@@ -143,17 +143,41 @@ a[href]:where(
     li {
         list-style-type: none;
         padding: 5px;
+        width: 50px;
+        height: 50px;
     }
 
+    /* Got help from https://3dtransforms.desandro.com/card-flip */
     li > img {
         width: 40px;
         height: 40px;
         object-fit: contain;
+        transition: transform 0.45s;
+        backface-visibility: hidden;
+    }
+
+    li:hover img {
+        transform: rotateY(180deg);
     }
 
     li > p {
-        display: none;
+        position: relative;
+        width: 40px;
+        height: 40px;
+        top: -44px;
+        margin: 0px;
         font-size: 8px;
+        text-align: center;
+        transition: transform 0.45s;
+        backface-visibility: hidden;
+        transform: rotateY(180deg);
+        background-color: var(--dark-accent-bg-color);
+        color: var(--dark-accent-text-color);
+        line-height: 40px;
+    }
+
+    li:hover p {
+        transform: rotateY(0.01deg);
     }
 }
 
@@ -211,6 +235,19 @@ a[href]:where(
         li > img {
             width: 60px;
             height: 60px;
+        }
+
+        li > p {
+            width: 60px;
+            height: 60px;
+            top: -64px;
+            font-size: 12px;
+            line-height: 60px;
+        }
+
+        li {
+            width: 70px;
+            height: 70px;
         }
     }
 }
