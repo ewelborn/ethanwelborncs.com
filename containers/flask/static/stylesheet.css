@@ -39,8 +39,8 @@ html {
     --light-accent2-bg-color: #E34830;
     --light-accent2-text-color: #000;
 
-    --link-text-color: #00E;
-    --visited-link-text-color: #551A8B;
+    --link-text-color: #A62A17;
+    --visited-link-text-color: #A62A17;
 }
 
 /******************/
@@ -136,7 +136,7 @@ a[href]:where(
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
 
     padding-left: 0px;
 
@@ -203,6 +203,12 @@ a[href]:where(
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.small-images >img {
+    display: inline-block;
+    margin-left: 1px;
+    object-fit: cover;
 }
 
 /* Small */
@@ -313,6 +319,10 @@ a[href]:where(
         }
     }
     
+    .small-images >img {
+        display: inline-block;
+        height: 14px;
+    }
 }
 
 /* Extra Large */
@@ -333,7 +343,8 @@ body {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: underline;
+    color: var(--link-text-color)
 }
 
 p {
@@ -353,6 +364,10 @@ main {
 
     p {
         font-size: 14px;
+    }
+
+    img { 
+        max-width: 100%;
     }
 
     /*section:nth-child(odd) {

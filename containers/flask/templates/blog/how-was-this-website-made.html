@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block web_title %}Pothole Detection and Area Estimation{% endblock %}
+
+{% block preamble %}
+{% endblock %}
+
+{% block main %}
+			<section class="somethingelse">
+				<h1 class="impact-text">How was this website made?</h1>
+				<p>
+					This website was made with Python/Flask, GUnicorn, Nginx, and Docker, and it all runs on an Amazon Web Services EC2 server in the cloud.
+					This is my third website: the first website was built using Java on a Payara webserver, while the second website was built using
+					Django/Python on an Apache webserver.
+				</p>
+
+				<p>
+					The foundation for this website was written and built in about three days. I used 
+					<a href="https://github.com/docker/awesome-compose/tree/master/nginx-wsgi-flask">this template from GitHub</a> as a basis for the project:
+					it helped me figure out the Docker configurations necessary to get a simple Flask / GUnicorn / Nginx system working.
+				</p>
+
+				<p>
+					The Flask app, clocking in at 57 lines of Python code, is short and simple. The only goal of the Flask app is to route users and
+					fill in HTML templates. Almost no configuration was necessary for GUnicorn, so the Python portion of this project is very small.
+				</p>
+
+				<p>
+					The HTML, CSS, and Javascript code was all written by hand with no frameworks or libraries. Small pieces of code were appropriated
+					from the Internet, and I tried my best to reference them in the source files as I used them. The website was designed with accessibility
+					in mind: I consistently referenced tools such as the <a href="https://webaim.org/resources/contrastchecker/">WebAIM contrast checker</a>,
+					and <a href="https://wave.webaim.org/">WAVE</a>.
+				</p>
+
+				<p>
+					The template, while helpful, did not provide any method for HTTPS encryption on the webserver. To solve this, I added a third Docker
+					container to manage <a href="https://certbot.eff.org/">Certbot</a> - a free SSL/TLS certificate generation service provided by the 
+					Electronic Frontifer Foundation.
+				</p>
+			</section>
+
+			<section class="somethingelse">
+				<h1 class="impact-text">Where's the source code?</h1>
+				<p>
+					The source code can be found on <a href="https://github.com/ewelborn/ethanwelborncs.com">GitHub</a> - I open sourced the project so
+					that other people can see the code and use it as a launching-off point for their own websites. I'm considering splitting the project
+					into two repositories - one for the webserver (focused primarily on Nginx and Docker), and one for the content of the
+					website itself (the Flask app and HTML files). I have not made up my mind on how I'm going to accomplish this yet.
+				</p>
+			</section>
+{% endblock %}

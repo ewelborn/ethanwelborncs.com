@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block web_title %}Pothole Detection and Area Estimation{% endblock %}
+
+{% block preamble %}
+{% endblock %}
+
+{% block main %}
+			<section class="somethingelse">
+				<h1 class="impact-text">Pothole Detection and Area Estimation</h1>
+				<p>
+					<em><a href="https://link.springer.com/chapter/10.1007/978-3-031-47966-3_29">Pothole Segmentation and Area Estimation with Deep Neural Networks and Unmanned Aerial Vehicles</a></em>
+					is the penultimate product of two years worth of work. Co-authored with 
+					<a href="https://sites.google.com/site/sotiriosresearch/home?authuser=0">Dr. Sotirios Diamantas</a>, it was presented at 
+					<a href="https://www.isvc.net/">ISVC 2023</a> and printed in Springer. This work was a direct continuation of my graduate thesis, 
+					<em><a href="https://www.proquest.com/openview/15a13ba1907b343fb323689f30200943">Detecting Potholes Using Deep Neural Networks with Unmanned Aerial Vehicles</a></em>
+				</p>
+			</section>
+
+			<section class="somethingelse">
+				<h1 class="impact-text">How Does It Work?</h1>
+				<p>
+					Images are fed into our <a href="https://yolov8.com/">YOLOv8</a> model one-at-a-time. Our model is trained to recognize and find the outlines 
+					of potholes.
+				</p>
+			</section>
+
+			<section class="somethingelse">
+				<h2 class="impact-text">Videos and Screenshots</h1>
+				<p>Videos of the model detecting potholes can be found on the <a href="https://www.youtube.com/channel/UCeyQfeblSg2eyX2gGSUpIOw">Robot Perception channel</a>, 
+					which is managed by co-author Dr. Sotirios Diamantas. The videos are also linked below:</p>
+				<ul style="margin-left: 0px;">
+					<li><p><a href="https://www.youtube.com/watch?v=Cfq9XKK0_NE">Pothole Area Estimation (90 degrees at 10 meters)</a></p></li>
+					<li><p><a href="https://www.youtube.com/watch?v=cLvNj1Gbg58">Pothole Area Estimation (45 degrees at 10 meters)</a></p></li>
+					<li><p><a href="https://www.youtube.com/watch?v=gOAjnqYmMEw">Pothole Area Estimation (15 degrees at 5 meters)</a></p></li>
+				</ul>
+				<img src="{{ url_for('static', filename='potholes.png')}}">
+			</section>
+{% endblock %}
