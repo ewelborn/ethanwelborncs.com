@@ -11,17 +11,24 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt/:ro
       - /var/certbot/webroot:/var/certbot/webroot
       #- /var/log/letsencrypt:./var/log/letsencrypt
+      - /var/log/nginx:/var/log/nginx
+      - /var/www/goaccess:/var/www/goaccess
     environment:
       - FLASK_SERVER_ADDR=flask-app:8000
+      - GOACCESS_SERVER_ADDR=goaccess:7890
       - DOMAIN_NAME
+      - GOACCESS_DOMAIN_NAME
+      - GOACCESS_ADMIN_IP_ADDRESS
     ports:
       - 80:80
       - 443:443
+      - 2024:2024
     networks:
       - web-access
       - no-web-access
     depends_on:
       - flask-app
+      - goaccess
     healthcheck:
       test: ["CMD-SHELL", "curl --silent --fail localhost:80/health-check || exit 1"]
       interval: 10s
@@ -56,6 +63,17 @@ services:
     command: bash renew.sh
     # Comment out the line below if you're running with SSL to turn on the Certbot renewal process
     profiles: ["donotstart"]
+  goaccess:
+    build: containers/goaccess
+    restart: always
+    volumes:
+      - /var/log/nginx:/var/log/nginx
+      - /var/www/goaccess:/var/www/goaccess
+    ports: 
+      - 7890:7890
+    networks:
+      - no-web-access
+    command: -f /var/log/nginx/access.log --real-time-html --ws-url=wss://$GOACCESS_DOMAIN_NAME:443/ws -o /var/www/goaccess/report.html --port=7890 --config-file=/usr/local/etc/goaccess/goaccess.conf --origin=https://$GOACCESS_DOMAIN_NAME
 networks:
   web-access:
     driver: bridge
