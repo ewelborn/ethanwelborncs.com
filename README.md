@@ -26,10 +26,12 @@ Create a new Ubuntu server.
 3. Run the following command in your terminal to setup your SSL certificates. Follow the instructions provided by Certbot.
     You will need to provide your domain name(s) and your email address.
     `sudo docker compose run certbot certbot certonly --webroot`
+    When asked to enter the webroot, type in the following for each domain name:
+    `/var/certbot/webroot`
 
 4. Open the compose.yaml file and comment out line 9 - then, uncomment line 7, so that the NGINX server can operate in encrypted mode.
 
-5. While in the compose.yaml file, uncomment line 58 so that the certbot service can automatically handle certificate renewals.
+5. While in the compose.yaml file, uncomment line 65 so that the certbot service can automatically handle certificate renewals.
 
 6. Build and run the webserver by executing the following command while inside the GitHub repo folder: `sudo docker compose up -d --build`
 
